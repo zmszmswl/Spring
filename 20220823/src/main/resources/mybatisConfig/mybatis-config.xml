@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="jdbcTypeForNull" value="NULL"/> <!-- 자바에서는 VO 객체에 빈값을 실어보내면 mybatis 맵퍼에서 인식을 못하는데 NULL 값을 인식할 수 있도록 설정해줌 -->
+	</settings>
+</configuration>  
