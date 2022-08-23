@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--  DBCP -->
+	<bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="username" value="micol"/>
+		<property name="password" value="1234" />
+	</bean>
+	
+	<!-- DAO를 만든것 (연결객체) -->
+	<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource">
+		<constructor-arg ref="hikariConfig"/>
+	</bean>
+	
+	<!-- mybatis를 연결 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="dataSource"  ref="dataSource"></property>
+		<!-- mybatis만 불러도 위에 다 불러오는 제어역전이 일어남 -->
+	</bean>
+	
+	<mybatis-spring:scan base-package="co.micol.prj.**.map"/>
+
+</beans>
