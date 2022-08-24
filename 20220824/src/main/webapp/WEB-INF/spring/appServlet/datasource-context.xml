@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:property-placeholder location="classpath:config/db.properties" ></context:property-placeholder>
+	<!--  DBCP -->
+<!-- 	<bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="username" value="micol"/>
+		<property name="password" value="1234" />
+	</bean>
+	
+	DAO를 만든것 (연결객체) 드라이버로드->물리적데이터위치찾기->데이터계정->conn,psmt
+	<bean class="com.zaxxer.hikari.HikariDataSource" id="dataSource">
+		<constructor-arg ref="hikariConfig"/>
+	</bean> -->
+	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource" destroy-method="close">
+      <property name="driverClassName" value="${driver}" />
+      <property name="url" value="${url}" />
+      <property name="username" value="${name}" />
+      <property name="password" value="${password}" />
+   </bean>
+	
+	<!-- mybatis를 연결 -->
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="dataSource"  ref="dataSource"></property>
+		<property name="configLocation" value="classpath:config/mybatis-config.xml"></property> <!-- null값 처리 -->
+		<!-- mybatis만 불러도 위에 다 불러오는 제어역전이 일어남 -->
+	</bean>
+	
+	<mybatis-spring:scan base-package="co.micol.prj.**.map"/>
+
+</beans>

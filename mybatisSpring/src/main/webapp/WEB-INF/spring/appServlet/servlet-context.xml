@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="co.micol.prj" />
+	<context:component-scan base-package="co.micol.prj" /> <!-- 기본적으로  -->
 	
 	
 	
