@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model 어노테이션을 찾아서 IoC에 옮기기 (어디에서 읽을것인가를 정함)-->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- jsp페이지에 리소스를 저장하는 위치, 맵핑할때 이렇게 씀 -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- VIEW RESOLVE  Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <!-- 프로젝트 구조 만들때 위치정보! -->
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	<!-- 인터페이스의 @어노테이션이 있는것을 찾는다. -->
+	<context:component-scan base-package="co.micol.prj" />
+	
+	
+	
+</beans:beans>
