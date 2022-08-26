@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h1>시작하는곳</h1>
+	<button type="button" onclick="location.href='noticeSelectList.do'">NOTICE 목록 바로가기</button>
+	<a href="noticeSelectList.do">목록</a>
 </body>
 </html>

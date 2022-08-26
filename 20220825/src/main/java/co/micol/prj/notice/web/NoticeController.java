@@ -28,10 +28,12 @@ public class NoticeController {
 		@Autowired // 서블릿컨텍스트 안의 context-path를 찾는것 -> 즉, webapp을 찾음 ->  ★파일폴더를 찾기위해!
 		private ServletContext servletContext;
 		
-		@RequestMapping("/noticeSelect.do")
+		// 게시판 단건조회
+		@PostMapping("/noticeSelect.do")
 		public String noticeSelect(NoticeVO vo, Model model) { // 단건조회 1개의 값만 받을것임
-			vo.setNoticeId(22); // 강제로 하나의 레코드를 선택하기위해 만든것
+			//vo.setNoticeId(22); // 강제로 하나의 레코드를 선택하기위해 만든것
 			model.addAttribute("n",ns.noticeSelect(vo));
+			ns.noticeHitUpdate(vo); // 조회수 증가
 			return "notice/noticeSelect";
 		}
 		

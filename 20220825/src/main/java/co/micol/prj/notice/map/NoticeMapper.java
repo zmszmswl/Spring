@@ -16,6 +16,7 @@ public interface NoticeMapper {
 	int noticeInsert(NoticeVO vo);
 	int noticeUpdate(NoticeVO vo);
 	int noticeDelete(NoticeVO vo);
+	int noticeHitUpdate(NoticeVO vo);
 	
 	// 꼭기억하기 ★★★ @Param :  Mapper 인터페이스에서 매개변수를 2개 이상 사용하려고 한다면 파라매터로 넘어오는 변수를 스트링값으로 사용하겠다고 선언해줘야 맵퍼에서 인식가능
 	List<NoticeVO> noticeSearch(@Param("key") String key, @Param("val") String val); // @Parem("속성명") 타입 "속성명" //
