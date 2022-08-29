@@ -152,9 +152,9 @@ tr:last-child td:last-child {
 		 $("#tbody").remove();
 		 let tbody = $("<tbody />").attr('id',"tbody")
 		 $.each(data, function(index, item){
-			 
-		
-		 let tr = $("<tr />").attr("onclick","noticeCall(+item.noticeId+")").append($("<td />").text(item.noticeId),
+			 alert(index);
+			 alert(item);
+		 let tr = $("<tr />").attr("onclick","noticeCall("+item.noticeId+")").append($("<td />").text(item.noticeId),
 		 				  		   $("<td />").text(item.noticeWriter),
 		 				           $("<td />").text(item.noticeTitle),
 		 				           $("<td />").text(item.noticeHit)
