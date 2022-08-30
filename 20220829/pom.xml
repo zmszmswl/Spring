@@ -33,7 +33,7 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc 데이터베이스 사용시 반드시 필요함-->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>

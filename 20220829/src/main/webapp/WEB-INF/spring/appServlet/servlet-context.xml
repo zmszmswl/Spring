@@ -16,17 +16,17 @@
 	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <!-- 뷰리졸브 ViewResolver -->
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
-		<beans:property name="order" value="2" />
+		<beans:property name="order" value="2" /> 
 	</beans:bean>
 	
 	<!-- tiles 환경설정 -->
 	   <!-- Tiles View Resolve 설정 order:1번이니깐 얘가 먼저 동작하고 타일즈를 안태우면 위에 resolve가 동작 -->
 	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver" >
 		<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView" />
-		<beans:property name="order" value="1" /> <!-- 먼저 동작하라는 뜻 -->
+		<beans:property name="order" value="1" /> <!-- tiles가 먼저 동작하라는 뜻 -->
 	</beans:bean>
 	
 	<!-- tiles 설정 -->

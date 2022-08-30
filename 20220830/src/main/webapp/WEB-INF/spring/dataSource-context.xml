@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- DAO 만들기!~ -->
+	<context:property-placeholder location="classpath:config/db.properties"/> <!-- 자바에서 쓰는 리소스는 classpath -->
+	
+	<!-- bean 객체로 컨테이너 태우기 -->
+	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="dataSource" destroy-method="close"> <!-- 소멸시킬때는 close 필요함 -->
+		<property name="driverClassName" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${name}" />
+		<property name="password" value="${password}" />
+	</bean>
+	
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" /> 	<!-- DI 의존성 주입 -->
+		<property name="configLocation" value="classpath:config/mybatis-config.xml" />
+	</bean>
+	
+	<!-- mybatis mapper 인터페이스를 스캔하라~! -->
+	<mybatis-spring:scan base-package="co.micol.prj.**.map"/> <!-- 이미 자바 소스코드를 이클립스가 자동으로 컴파일 해놓음. 서버가 동작할때 컨테이너를 구축하면서 클래스파일을 쭈욱 스캔함 -->
+</beans>
