@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	<!-- AOP (관점지향형) xml환경설정파일 자바에서는 @Configuration --> 
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<bean class="co.micol.prj.aop.AopAdvice" id="aopAdvice"> </bean> <!-- 자바에서는 @bean 으로 설정 --> <!-- 풀 패키지명을 포함하여 정확한 클래스명 작성함 -->
+	<!-- xml 환경설정파일 -->
+	
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(* co.micol.prj..*Impl.*(..))" id="allPoint" />
+		<aop:aspect ref="aopAdvice">
+			<!-- <aop:before method="log" pointcut-ref="allPoint"/>	메소드를 시작할때 aop동작하라 -->	
+			<aop:after method="endlog" pointcut-ref="allPoint"/> <!-- 메소드를 끝날때 aop동작하라 -->	
+			<!--  <aop:around method="log" pointcut-ref="allPoint"/>	 메소드를 시작할때 aop동작하라 실행잘안됌  -->	
+		</aop:aspect>
+	</aop:config>
+</beans>

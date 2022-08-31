@@ -21,6 +21,7 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" /> <!-- 프로젝트 구조 만들때 위치정보! -->
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
 	<!-- 인터페이스의 @어노테이션이 있는것을 찾는다. -->
 	<context:component-scan base-package="co.micol.prj" />
 	

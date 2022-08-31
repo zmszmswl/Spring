@@ -129,7 +129,7 @@ tr:last-child td:last-child {
 		frm.submit();		
 	}
 	
-	function searchCall() {
+/* 	function searchCall() {
 		let key = document.getElementById('key').value;
 	    let val = document.getElementById('val').value;
 	   // alert(key);
@@ -146,50 +146,54 @@ tr:last-child td:last-child {
 	    		alert("실패!!!!!!!!!!!!!!!!!!!!");
 	    	}
 	    });
-	}
+	} */
 	
-	function htmlView(data) {
-		 $("#tbody").remove();
-		 let tbody = $("<tbody />").attr('id',"tbody")
-		 $.each(data, function(index, item){
-			 alert(index);
-			 alert(item);
-		 let tr = $("<tr />").attr("onclick","noticeCall("+item.noticeId+")").append($("<td />").text(item.noticeId),
-		 				  		   $("<td />").text(item.noticeWriter),
-		 				           $("<td />").text(item.noticeTitle),
-		 				           $("<td />").text(item.noticeHit)
-		 				           );
-		 	tbody.append(tr);
-		 });
-		 $("#list").append(tbody);
-		 
-		// html로 변환해서 원하는 위치에 출력하도록 구현한다.
-	}
-	
-/* 	
 	   function searchCall() {
 		      //ajax 검색 처리
-		      let key = document.getElementById("key").value;
-		      let val = document.getElementById("val").value;
-		      console.log(key, val);
-		      
+		      let key = document.getElementById('key').value;
+		      let val = document.getElementById('val').value;
+		      console.log(key, val); // 값 넘어오나 확인
+		      let payMent = {'key' : key, 'val' : val};
+		      console.log("payMent = " + payMent); // 값 넘어오나 확인
 		      fetch("ajaxSearch.do", {
 		         method : 'post',
 		         headers : {
-		            'Content-Type' : 'application/x-www-form-urlencoded',
+		            //'Content-Type' : 'application/x-www-form-urlencoded',
+		              'Content-Type' : 'application/json',
 		         },
-		         body : "key="+key+"&val="+val
+		         // body : "key="+key+"&val="+val
+		         body : JSON.stringify(payMent)
 		      }).then(response => response.json())
 		        .then((data)=> htmlView(data));
 		   } 
 		   
-			   //json형태로 값을 전달할때 헤더와 바디를 변경해야함
+/* 			   //json형태로 값을 전달할때 헤더와 바디를 변경해야함
 			   	headers :{
-			   		'Content-Type' : 'application/x-www-form-urlencoded',
+			   		'Content-Type' : 'application/json',
 			   	},
-			   	body : JSON.stringify({'key':key, 'val':val})
+			   	body : JSON.stringify(payMent) */
+				
+	   	function htmlView(data) {
+			 $("#tbody").remove();
+			 let tbody = $("<tbody />").attr('id',"tbody")
+			 $.each(data, function(index, item){
+				 alert(index);
+				 alert(item);
+			 let tr = $("<tr />").attr("onclick","noticeCall("+item.noticeId+")").append($("<td />").text(item.noticeId),
+			 				  		   $("<td />").text(item.noticeWriter),
+			 				           $("<td />").text(item.noticeTitle),
+			 				           $("<td />").text(item.noticeHit)
+			 				           );
+			 	tbody.append(tr);
+			 });
+			 $("#list").append(tbody);
+			 
+			// html로 변환해서 원하는 위치에 출력하도록 구현한다.
+		}
+				
+
 		   
-*/		  
+		  
 
 </script>
 </body>
